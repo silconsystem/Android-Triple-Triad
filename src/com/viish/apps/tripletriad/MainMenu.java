@@ -1,5 +1,7 @@
+// import game specific packages
 package com.viish.apps.tripletriad;
 
+// import android packages
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.TextView;
 
+// import game specific packages
 import com.viish.apps.tripletriad.settings.SettingsActivity;
 
 /*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
