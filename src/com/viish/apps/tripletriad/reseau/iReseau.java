@@ -1,5 +1,7 @@
+// import game specific packages
 package com.viish.apps.tripletriad.reseau;
 
+// import game specific packages
 import com.viish.apps.tripletriad.Engine;
 
 /*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
