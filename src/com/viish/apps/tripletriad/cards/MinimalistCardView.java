@@ -1,5 +1,7 @@
+// import game specific packages
 package com.viish.apps.tripletriad.cards;
 
+// import android packages
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
