@@ -74,7 +74,8 @@ public class Cards extends Activity
         if (viewTreeObserver.isAlive()) {
         	viewTreeObserver.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
 	            @SuppressWarnings("deprecation")
-				@Override
+		    
+		    @Override
 	            public void onGlobalLayout() {
 	                MyCardsAdapter myCardsAdapter = new MyCardsAdapter();
 	                myCards = (ViewPager) findViewById(R.id.cards);
@@ -86,7 +87,7 @@ public class Cards extends Activity
 	                shop.setAdapter(shopAdapter);
 	                shop.setOnPageChangeListener(shopLevelChangePageListener);
 	                
-	        		mainLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+	        	mainLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
 	            }
         	});
         }
