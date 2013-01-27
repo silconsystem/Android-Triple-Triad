@@ -1,7 +1,10 @@
+// import game specific packages
 package com.viish.apps.tripletriad;
 
+// import java packages
 import java.util.EventListener;
 
+// import game specific packages
 import com.viish.apps.tripletriad.cards.Card;
 import com.viish.apps.tripletriad.robots.Action;
 
@@ -22,6 +25,7 @@ import com.viish.apps.tripletriad.robots.Action;
  */
 public interface EventFiredListener extends EventListener
 {
+	// implement game rule logic triggers
 	void eventSameWallTriggered();
 	void eventPlusWallTriggered();
 	void eventSameTriggered();
