@@ -1,10 +1,13 @@
+// import game specific packages
 package com.viish.apps.tripletriad;
 
+// import java packages
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+// import android packages
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,6 +18,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+// import game specific packages
 import com.viish.apps.tripletriad.cards.Card;
 
 /*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
@@ -122,23 +126,23 @@ public class DatabaseStream
 	{
 		Cursor result = stream.query("MyCards", null, "CardName LIKE \"" + cardFullName + "\"", null, null, null, "CardName ASC");
 		
-		if (result != null && result.move(1)) // Si on en a deja un exemplaire, on augmente de 1 la valeur Number
+		if (result != null && result.move(1)) // If we already have a copy, you increase the value of one Number
 		{
 			int number = 0;
 			int numberColumn = result.getColumnIndex("Number");
-			number = result.getInt(numberColumn); // Valeur anterieure
-			number += 1; // Nouvelle valeur
+			number = result.getInt(numberColumn);			// anterior value
+			number += 1; 						// new value
 			
 			ContentValues cv = new ContentValues();
 			cv.put("CardName", cardFullName);
 			cv.put("Number", number);
 			
-			stream.update("MyCards", cv, "CardName LIKE \"" + cardFullName + "\"", null); // Mise a jour de la table
+			stream.update("MyCards", cv, "CardName LIKE \"" + cardFullName + "\"", null); // Update the table
 			
 			result.close();
 			
 		}
-		else // Premier exemplaire, on l'ajoute dans MyCards
+		else 								// First copy, it adds MyCards
 		{
 			ContentValues cv = new ContentValues();
 			cv.put("CardName", cardFullName);
@@ -322,12 +326,12 @@ public class DatabaseStream
 	{
 		Cursor result = stream.query("MyCards", null, "CardName LIKE \"" + cardFullName + "\"", null, null, null, "CardName ASC");
 		
-		if (result != null && result.move(1)) // Si on en a deja un exemplaire, on diminue de 1 la valeur Number, si Number tombe a zero, on supprime toute l'entree
+		if (result != null && result.move(1)) // If we already have a copy, it decreases the value 1 Number if Number falls to zero, it deletes all input
 		{
 			int number = 0;
 			int numberColumn = result.getColumnIndex("Number");
-			number = result.getInt(numberColumn); // Valeur anterieure
-			number -= 1; // Nouvelle valeur
+			number = result.getInt(numberColumn); 				// anterior value
+			number -= 1; 							// new value
 			
 			if (number > 0)
 			{
@@ -335,13 +339,13 @@ public class DatabaseStream
 				cv.put("CardName", cardFullName);
 				cv.put("Number", number);
 				
-				stream.update("MyCards", cv, "CardName LIKE \"" + cardFullName + "\"", null); // Mise a jour de la table
+				stream.update("MyCards", cv, "CardName LIKE \"" + cardFullName + "\"", null); 		// Update the table
 				
 				result.close();
 			}
 			else
 			{
-				stream.delete("MyCards", "CardName LIKE \"" + cardFullName + "\"", null); // Suppresion de la ligne
+				stream.delete("MyCards", "CardName LIKE \"" + cardFullName + "\"", null); 		// Deletion of line
 				
 				result.close();
 			}
@@ -385,7 +389,7 @@ public class DatabaseStream
 		SharedPreferences lastSettings = context.getSharedPreferences("TripleTriad", Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = lastSettings.edit();
 		editor.putBoolean("FirstTime", false);
-		editor.putInt("Gils", STARTING_GILS); // 100 Gils au depart
+		editor.putInt("Gils", STARTING_GILS); 				// get 100 Gils on depart
 		editor.commit();
 	}
 
