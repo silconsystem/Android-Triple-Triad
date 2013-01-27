@@ -1,5 +1,7 @@
+// import game specific packages
 package com.viish.apps.tripletriad.robots;
 
+// import game specific packages
 import com.viish.apps.tripletriad.cards.Card;
 
 /*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
@@ -115,7 +117,7 @@ public class BotHard implements iBot
 				if (!hisDeck[c].isPlayed()) {
 					// For each card I have left
 					for (int slot = 0; slot < board.length; slot++) {
-						if (board[slot] == null) { // For each empty space on the board
+						if (board[slot] == null) {			 // For each empty space on the board
 							Card[] copyBoard = clone(board);
 							Card card = hisDeck[c];
 							card.lock();
@@ -150,7 +152,7 @@ public class BotHard implements iBot
 			if (myDeck[c] != null) {
 				if (!myDeck[c].isPlayed()) {
 					for (int slot = 0; slot < board.length; slot++) {
-						if (board[slot] == null) { // For each empty space on the board
+						if (board[slot] == null) {			 // For each empty space on the board
 							Card[] copyBoard = clone(board);
 							Card card = myDeck[c];
 							card.lock();
