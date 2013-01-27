@@ -37,3 +37,8 @@ ToDo
 * Rewrite engine
 * Finish new Game renderer to use not only random decks and pvp
 * Optimize for Android 3+
+
+Test
+====================
+* test your android application
+* use the online android emulator: https://app.manymo.com/emulators
