@@ -1,5 +1,7 @@
+// import game specific packages
 package com.viish.apps.tripletriad.cards;
 
+// import android packages
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 
+// import game specific packages
 import com.viish.apps.tripletriad.Engine;
 
 /*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
