@@ -1,10 +1,13 @@
+// import game specific packages
 package com.viish.apps.tripletriad;
 
+// import java packages
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+//import android packages
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
