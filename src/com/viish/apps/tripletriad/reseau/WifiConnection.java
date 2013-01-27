@@ -1,5 +1,7 @@
+// import game specific packages
 package com.viish.apps.tripletriad.reseau;
 
+// import java packages
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
@@ -7,8 +9,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+// import android packages
 import android.util.Log;
 
+// import game specific packages
 import com.viish.apps.tripletriad.Engine;
 
 /*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
