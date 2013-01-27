@@ -1,5 +1,7 @@
+// import code specific packages
 package com.viish.apps.tripletriad;
 
+// import java packages
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -7,11 +9,13 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Random;
 
+// import android packages
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+// import game specific packages 
 import com.viish.apps.tripletriad.cards.Card;
 import com.viish.apps.tripletriad.reseau.WifiConnection;
 import com.viish.apps.tripletriad.robots.Action;
@@ -85,7 +89,7 @@ public class Engine
 		
 		if (!pvp || (pvp && isServer))
 		{
-			int firstToPlay = new Random().nextInt(2) + 1; // Renvoie une valeur au hasard entre 1 et 2
+			int firstToPlay = new Random().nextInt(2) + 1; // Returns a random value between 1 and 2
 			
 			if (ruleElementary) {
 				initializeElements();
