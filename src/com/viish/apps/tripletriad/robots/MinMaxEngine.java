@@ -1,7 +1,10 @@
+// import game specific packages
 package com.viish.apps.tripletriad.robots;
 
+// import java packages
 import java.util.ArrayList;
 
+// import game specific packages
 import com.viish.apps.tripletriad.cards.Card;
 
 public class MinMaxEngine {
@@ -65,14 +68,14 @@ public class MinMaxEngine {
 				}
 			}
 		}
-		else if (cell % 3 == 1) // Colonne du milieu
+		else if (cell % 3 == 1)					 // Middle column
 		{
 			Card c = this.board[cell + 1];
-			if (c != null) // Si il y a une carte a sa droite
+			if (c != null)					 // If there is a card has the right
 			{
 				if (c.getColor() != player && card.getRightValue() > c.getLeftValue())
 				{
-					c.swapColor(); // On retourne l'autre
+					c.swapColor();			 // It returns the other
 				}
 			}
 			
