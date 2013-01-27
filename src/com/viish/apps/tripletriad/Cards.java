@@ -1,7 +1,10 @@
+// import game specific packages 
 package com.viish.apps.tripletriad;
 
+//  import java packages
 import java.util.ArrayList;
 
+//import android packages
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -22,12 +25,13 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
+// import game specific packages
 import com.viish.apps.tripletriad.cards.Card;
 import com.viish.apps.tripletriad.cards.MinimalistCardView;
 
 public class Cards extends Activity
 {
-    private static int NUM_VIEWS = 10; // One for each card's level
+    private static int NUM_VIEWS = 10;					// One for each card's level
     
 	private ViewPager myCards, shop;
 	private TextView levelMyCards, levelShop;
@@ -225,7 +229,8 @@ public class Cards extends Activity
 	        Card card = mThumbIds.get(position);
 	        cv = (MinimalistCardView) v.findViewById(R.id.icon_image);
 	        cv.setCard(card);
-//	        cv.setOnClickListener((OnClickListener) context);
+		// cv.setOnClickListener((OnClickListener) context);
+		// 			--- uncomment if needed
 	        cv.resizePictures(mainLayout.getWidth() / 8, mainLayout.getHeight() / 4);
 	        v.requestLayout();
 	        return v;
