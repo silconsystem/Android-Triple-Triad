@@ -354,7 +354,7 @@ public class Engine
 	{
 		for(EventFiredListener listener : getEventFiredListeners()) 
 		{
-            listener.eventSameTriggered();
+            		listener.eventSameTriggered();
 		}
 	}
 	
@@ -362,7 +362,7 @@ public class Engine
 	{
 		for(EventFiredListener listener : getEventFiredListeners()) 
 		{
-            listener.eventSameWallTriggered();
+            		listener.eventSameWallTriggered();
 		}
 	}
 	
@@ -370,7 +370,7 @@ public class Engine
 	{
 		for(EventFiredListener listener : getEventFiredListeners()) 
 		{
-            listener.eventPlusWallTriggered();
+            		listener.eventPlusWallTriggered();
 		}
 	}
 	
@@ -378,7 +378,7 @@ public class Engine
 	{
 		for(EventFiredListener listener : getEventFiredListeners()) 
 		{
-            listener.eventPlusTriggered();
+            		listener.eventPlusTriggered();
 		}
 	}
 	
@@ -402,7 +402,7 @@ public class Engine
 		gameStarted = true;
 		for(EventFiredListener listener : getEventFiredListeners()) 
 		{
-            listener.eventPvPGameReadyToStart(deck);
+            		listener.eventPvPGameReadyToStart(deck);
 		}
 	}
 	
@@ -410,7 +410,7 @@ public class Engine
 	{
 		for(EventFiredListener listener : getEventFiredListeners()) 
 		{
-            listener.eventComboTriggered();
+            		listener.eventComboTriggered();
 		}
 	}
 
@@ -419,8 +419,7 @@ public class Engine
 		int player = 0;
 		for (Card c : board)
 		{
-			if (c != null && c.getColor() == PLAYER)
-				player++;
+			if (c != null && c.getColor() == PLAYER) player++;
 		}
 		
 		if (startingPlayer == OPPONENT) { 
