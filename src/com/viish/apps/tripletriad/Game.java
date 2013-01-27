@@ -1,8 +1,11 @@
+// import game specific packages
 package com.viish.apps.tripletriad;
 
+// import java packages
 import java.util.ArrayList;
 import java.util.HashMap;
 
+// import android packages
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -20,6 +23,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+// import game specific packages
 import com.viish.apps.tripletriad.cards.Card;
 import com.viish.apps.tripletriad.cards.CompleteCardView;
 import com.viish.apps.tripletriad.robots.Action;
@@ -75,7 +79,7 @@ public class Game extends Activity implements EventFiredListener
 	private boolean isWaitingForUserToChooseACard;
 	
 	public void onCreate(Bundle b) 
-    {
+	{
         super.onCreate(b);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -91,15 +95,16 @@ public class Game extends Activity implements EventFiredListener
 		if (isRegleRandom) {
 			playerDeck = getRandomDeck(PLAYER);
 		} else {
-			//TODO
+			//TODO: implement random deck function
 			playerDeck = getRandomDeck(PLAYER);
 		}
-        opponentDeck = getRandomDeck(OPPONENT);
+       		opponentDeck = getRandomDeck(OPPONENT);
 		
 		engine = new Engine(Game.this, playerDeck, isPvp, false, isRegleSame, isReglePlus, isRegleSameWall, isRegleCombo, isReglePlusWall, isRegleElementary, null);
 		engine.addEventFiredListener(Game.this);
 		
 		botOpponent = new BotHard(OPPONENT, PLAYER, opponentDeck, playerDeck, engine.getBoard(), engine.getElements(), isRegleSame, isReglePlus, isRegleSameWall, isRegleCombo, isReglePlusWall, isRegleElementary);
+		
         if (isBotVsBot) {
         	botPlayerIfDemo = new BotHard(PLAYER, OPPONENT, playerDeck, opponentDeck, engine.getBoard(), engine.getElements(), isRegleSame, isReglePlus, isRegleSameWall, isRegleCombo, isReglePlusWall, isRegleElementary);
         }
@@ -115,8 +120,8 @@ public class Game extends Activity implements EventFiredListener
 	        		mainLayout.getViewTreeObserver().removeGlobalOnLayoutListener(this);
 	            }
         	});
-        }
-    }
+            }
+    	}
 	
 	private void initRules()
 	{
@@ -307,6 +312,7 @@ public class Game extends Activity implements EventFiredListener
 		    	}
 	    		return false;
 	    	}
+			
 			else if (event.getAction() == MotionEvent.ACTION_UP)
 			{
 				if (selectedCard == null && !engine.isGameOver())
