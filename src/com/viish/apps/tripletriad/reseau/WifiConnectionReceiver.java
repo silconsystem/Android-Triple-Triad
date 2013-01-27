@@ -1,11 +1,14 @@
+// import game specific packages
 package com.viish.apps.tripletriad.reseau;
 
+// import java packages
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+// import android packages
 import android.util.Log;
 
 /*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
