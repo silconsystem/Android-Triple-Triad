@@ -1,3 +1,4 @@
+// import game pecific packages
 package com.viish.apps.tripletriad;
 
 /*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
