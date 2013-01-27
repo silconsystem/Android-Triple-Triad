@@ -1,7 +1,10 @@
+// import game specific packages
 package com.viish.apps.tripletriad.cards;
 
+// import android packages
 import android.graphics.Bitmap;
 
+// import game specific packages
 import com.viish.apps.tripletriad.Engine;
 
 /*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
