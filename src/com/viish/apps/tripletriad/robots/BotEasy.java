@@ -1,7 +1,10 @@
+// import game specific packages
 package com.viish.apps.tripletriad.robots;
 
+// import java packages
 import java.util.ArrayList;
 
+// import game specific packages
 import com.viish.apps.tripletriad.Engine;
 import com.viish.apps.tripletriad.cards.Card;
 
@@ -74,19 +77,19 @@ public class BotEasy implements iBot
 		{
 			if (board[c] == null && c != cell)
 			{
-				if (cell == c - 1 && cell % 3 != 0) // On v�rifie la valeur de droite
+				if (cell == c - 1 && cell % 3 != 0) 		// verify the right value
 				{
 					return newCard.getRightValue() > oldCard.getRightValue();
 				}
-				else if (cell == c + 1 && c % 3 != 0) // On v�rifie la valeur de gauche
+				else if (cell == c + 1 && c % 3 != 0) 		// verify the value of left
 				{
 					return newCard.getLeftValue() > oldCard.getLeftValue();
 				}
-				else if (cell == c + 3) // On v�rifie la valeur du haut
+				else if (cell == c + 3) 			// verify the top value
 				{
 					return newCard.getTopValue() > oldCard.getTopValue();
 				}
-				else if (cell == c - 3) // On v�rifie la valeur du bas
+				else if (cell == c - 3) 			// verify the bottom value
 				{
 					return newCard.getBottomValue() > oldCard.getBottomValue();
 				}
@@ -95,16 +98,16 @@ public class BotEasy implements iBot
 		return false;
 	}
 	
-	// Link� au moteur de jeu, permet de jouer le prochain coup
+	// Link to the game engine, allows you to play the next shot
 	public Action nextMove()
 	{
 		Card carteAJouer = null;
 		int caseOuJouer = 0;
 		int gain = -1;	
 		
-		if (isFirstTurn()) // Si c'est la premi�re carte � �tre pos�e sur le plateau
+		if (isFirstTurn()) // text if this is the first card be laid on the table
 		{
-			// On joue la carte de niveau le plus faible dans un angle laissant apparaitre ses 2 valeurs les plus faibles
+			// We play the lowest level in a corner leaving the two lowest values
 			Card c = null;
 			for (Card card : deck)
 			{
@@ -146,14 +149,14 @@ public class BotEasy implements iBot
 		{	
 			for (int c = 0; c < board.length; c++)
 			{
-				if (board[c] == null) // Pour chaque case libre du plateau
+				if (board[c] == null) 				// free space for each shelf
 				{
 					for (Card card : deck)
 					{
-						if (!card.isPlayed()) // Pour chaque carte pouvant �tre jou�e
+						if (!card.isPlayed()) 		// test for each card that can be played
 						{
 							int g = gain(board, c, card.clone());
-							// On joue la carte de niveau le plus faible fournissant le gain maximal sauf si c'est le dernier tour o� alors on joue la carte de niveau max ayant le gain maximal;
+							// we play the lowest level providing maximum gain unless it's the last lap then we play the max level with the maximum gain;
 							if (g > gain || (g == gain && ((!islastAction() && card.getLevel() < carteAJouer.getLevel()) || (islastAction() && isNewCardStrongerForLastDefense(card, carteAJouer, c)))))
 							{
 								carteAJouer = card;
@@ -165,7 +168,7 @@ public class BotEasy implements iBot
 				}
 			}
 		}
-		// On joue la carte qui maximise le gain sur ce tour, en prenant celle de plus faible niveau en cas d'egalite
+		// we play the map that maximizes the gain on this tour, taking it to its lowest level in case of equality
 		return new Action(carteAJouer, caseOuJouer, gain);
 	}
 	
@@ -180,7 +183,7 @@ public class BotEasy implements iBot
 			c.malusElementaire();
 	}
 	
-	// Renvoie le nombre de cartes retournees en posant la carte What en Where
+	// Returns the number of cards turned in by asking the card What Where
 	private int gain(Card[] plateau, int where, Card what)
 	{
 		if (elementaire)
@@ -188,10 +191,10 @@ public class BotEasy implements iBot
 		
 		int gain = 0;
 		
-		if (where % 3 == 0) // Carte colonne gauche
+		if (where % 3 == 0) 				// Map left column
 		{
 			Card c = plateau[where + 1];
-			if (c != null) // Si il y a une carte a sa droite
+			if (c != null)				// If there is a card has the right
 			{
 				if (c.getColor() != ME && what.getRightValue() > c.getLeftValue()) // Celle jou�e est plus forte
 				{
@@ -199,77 +202,77 @@ public class BotEasy implements iBot
 				}
 			}
 		}
-		else if (where % 3 == 1) // Colonne du milieu
+		else if (where % 3 == 1) 			// Middle column
 		{
 			Card c = plateau[where + 1];
-			if (c != null) // Si il y a une carte a sa droite
+			if (c != null) 				// If there is a card has the right
 			{
-				if (c.getColor() != ME && what.getRightValue() > c.getLeftValue()) // Celle jou�e est plus forte
+				if (c.getColor() != ME && what.getRightValue() > c.getLeftValue()) // This play is greater
 				{
-					gain += 1; // On retourne l'autre
+					gain += 1; 		// It returns the other
 				}
 			}
 			
 			c = plateau[where - 1];
-			if (c != null) // Si il y a une carte a sa gauche
+			if (c != null) 				// If there is a map on his left
 			{
 				if (c.getColor() != ME && what.getLeftValue() > c.getRightValue()) // Celle jou�e est plus forte
 				{
-					gain += 1; // On retourne l'autre
+					gain += 1;		// It returns the other
 				}
 			}
 		}
-		else // Colonne de droite
+		else						 // Right Column
 		{
 			Card c = plateau[where - 1];
-			if (c != null) // Si il y a une carte a sa gauche
+			if (c != null) 				 // If there is a map on his left
 			{
-				if (c.getColor() != ME && what.getLeftValue() > c.getRightValue()) // Celle jou�e est plus forte
+				if (c.getColor() != ME && what.getLeftValue() > c.getRightValue()) // This play is greater
 				{
-					gain += 1; // On retourne l'autre
+					gain += 1;		 // It returns the other
 				}
 			}
 		}
 		
-		if (where / 3 == 0) // Ligne du haut
+		if (where / 3 == 0)				 // Top line
 		{
 			Card c = plateau[where + 3];
-			if (c != null) // Si il y a une carte en dessous
+			if (c != null)				 // If there is a map below
 			{
 				if (c.getColor() != ME && what.getBottomValue() > c.getTopValue()) // Celle jou�e est plus forte
 				{
-					gain += 1; // On retourne l'autre
+					gain += 1;		 // It returns the other
 				}
 			}
 		}
-		else if (where / 3 == 1) // Ligne du milieu
+		else if (where / 3 == 1)			 // Middle line
 		{
 			Card c = plateau[where + 3];
-			if (c != null) // Si il y a une carte en dessous
+			if (c != null)				 // If there is a map below
 			{
-				if (c.getColor() != ME && what.getBottomValue() > c.getTopValue()) // Celle jou�e est plus forte
+				if (c.getColor() != ME && what.getBottomValue() > c.getTopValue()) // This play is greater
 				{
-					gain += 1; // On retourne l'autre
+					gain += 1;		 // It returns the other
 				}
 			}
 			
 			c = plateau[where - 3];
-			if (c != null) // Si il y a une carte en dessus
+			if (c != null)				 // If there is a map over
 			{
-				if (c.getColor() != ME && what.getTopValue() > c.getBottomValue()) // Celle jou�e est plus forte
+				if (c.getColor() != ME && what.getTopValue() > c.getBottomValue()) // This play is greater
 				{
-					gain += 1; // On retourne l'autre
+					gain += 1;		 // It returns the other
 				}
 			}
 		}
-		else // Ligne du bas
+		else 						 // Bottom line
 		{
 			Card c = plateau[where - 3];
-			if (c != null) // Si il y a une carte en dessus
+			if (c != null)				 // If there is a map over
 			{
-				if (c.getColor() != ME && what.getTopValue() > c.getBottomValue()) // Celle jou�e est plus forte
+				if (c.getColor() != ME && what.getTopValue() > c.getBottomValue()) // This play is greater
 				{
-					gain += 1; // On retourne l'autre
+					gain += 1;		 // It returns the other
 				}
 			}
 		}
@@ -293,10 +296,10 @@ public class BotEasy implements iBot
 	private int gainSame(int player, Card[] board, Card what, int cell)
 	{
 		int gain = 0;
-		ArrayList<Integer> cards = new ArrayList<Integer>(); // Cartes subissant/permettant Identique
+		ArrayList<Integer> cards = new ArrayList<Integer>();		 // Undergoing cards / Identical to
 		int carteAdverse = 0;
 		
-		if (cell - 3 >= 0 && board[cell - 3] != null) // carte du dessus si existante
+		if (cell - 3 >= 0 && board[cell - 3] != null)			 // top card if available
 		{
 			if (board[cell - 3].getBottomValue() == what.getTopValue())
 			{
@@ -304,14 +307,14 @@ public class BotEasy implements iBot
 				if (board[cell - 3].getColor() != player) carteAdverse += 1;
 			}
 		}
-		else if (cell - 3 < 0 && memeMur) // Regle MemeMur
+		else if (cell - 3 < 0 && memeMur)				 // rule MemeMur
 		{
 			if (10 == what.getTopValue())
 			{
 				cards.add(-1);
 			}
 		}
-		if (cell + 3 < board.length && board[cell + 3] != null) // carte du dessous si existante
+		if (cell + 3 < board.length && board[cell + 3] != null)		 // map below if available
 		{
 			if (board[cell + 3].getTopValue() == what.getBottomValue())
 			{
@@ -319,14 +322,14 @@ public class BotEasy implements iBot
 				if (board[cell + 3].getColor() != player) carteAdverse += 1;
 			}
 		}
-		else if (cell + 3 >= board.length && memeMur) // Regle MemeMur
+		else if (cell + 3 >= board.length && memeMur)			 // rule MemeMur
 		{
 			if (10 == what.getBottomValue())
 			{
 				cards.add(-1);
 			}
 		}
-		if (cell % 3 <= 1 && board[cell + 1] != null) // colonne gauche ou milieu
+		if (cell % 3 <= 1 && board[cell + 1] != null)			 // column left or middle
 		{
 			if (board[cell + 1].getLeftValue() == what.getRightValue())
 			{
@@ -334,14 +337,14 @@ public class BotEasy implements iBot
 				if (board[cell + 1].getColor() != player) carteAdverse += 1;
 			}
 		}
-		else if (cell % 3 == 2 && memeMur) // Regle MemeMur
+		else if (cell % 3 == 2 && memeMur)				 // rule MemeMur
 		{
 			if (10 == what.getRightValue())
 			{
 				cards.add(-1);
 			}
 		}
-		if (cell % 3 >= 1 && board[cell - 1] != null) // colonne droite ou milieu
+		if (cell % 3 >= 1 && board[cell - 1] != null)			 // middle or right column
 		{
 			if (board[cell - 1].getRightValue() == what.getLeftValue())
 			{
@@ -349,7 +352,7 @@ public class BotEasy implements iBot
 				if (board[cell - 1].getColor() != player) carteAdverse += 1;
 			}
 		}
-		else if (cell % 3 == 0 && memeMur) // Regle MemeMur
+		else if (cell % 3 == 0 && memeMur)				 // rule MemeMur
 		{
 			if (10 == what.getLeftValue())
 			{
@@ -359,8 +362,8 @@ public class BotEasy implements iBot
 		
 		if (cards.size() >= 2 && carteAdverse >= 1)
 		{
-			ArrayList<Integer> swapped = new ArrayList<Integer>(); // Cartes swapped
-			for (int c : cards) // Pour chaque carte, on les retourne si besoin est
+			ArrayList<Integer> swapped = new ArrayList<Integer>();	 // cards swapped
+			for (int c : cards)					 // For each map, the returns if necessary
 			{
 				if (c != -1)
 				{
@@ -375,7 +378,7 @@ public class BotEasy implements iBot
 		return gain;
 	}
 	
-	// Applique la regle Plus sur le plateau
+	// More rule applies on the shelf
 	private int gainPlus(int player, Card[] board, Card what, int cell)
 	{
 		Card[] cards = new Card[4];
@@ -414,7 +417,7 @@ public class BotEasy implements iBot
 						
 						if (player != cards[j].getColor()) condition = true;
 						
-						if (somme == somme2 && condition) // Toutes les conditions remplies
+						if (somme == somme2 && condition) // All requirements are met
 						{
 							if (cards[i].getColor() != player)
 							{
