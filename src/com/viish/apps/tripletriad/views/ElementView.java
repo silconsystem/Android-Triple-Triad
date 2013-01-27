@@ -1,5 +1,7 @@
+// import game specific packages
 package com.viish.apps.tripletriad.views;
 
+// import android packages
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
